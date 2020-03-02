@@ -1,0 +1,60 @@
+<div class="row">
+    <form [formGroup]="frmValidator" (ngSubmit)="saveProperty()" class="col s12">
+        <div class="row">
+            <div class="input-field col s3">
+                <input id="txtCode" disbabled="true" formControlName="code" type="text" class="validate">
+                <label class="active" for="txtCode">Code</label>
+                <div class="warning-validation" *ngIf="fv.code.errors && (fv.code.touched || fv.code.dirty)">
+                    <strong *ngIf="fv.code.errors.required">Please, enter a code!</strong>
+                </div>
+            </div>
+            <div class="input-field col s9">
+                <input id="txtName" formControlName="name" type="text" class="validate">
+                <label for="txtName">Name</label>
+                <div class="warning-validation" *ngIf="fv.name.errors && (fv.name.touched || fv.name.dirty)">
+                    <strong *ngIf="fv.name.errors.required">Please, enter a name!</strong>
+                    <strong *ngIf="fv.name.errors.minlength">Please, the name must be at least 4 characters
+                        long!</strong>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="txtDescription" formControlName="description" type="text" class="validate">
+                <label for="txtDescription">Description</label>
+                <div class="warning-validation"
+                    *ngIf="fv.description.errors && (fv.description.touched || fv.description.dirty)">
+                    <strong *ngIf="fv.description.errors.required">Please, enter a description!</strong>
+                    <strong *ngIf="fv.description.errors.minlength">Please, the description must be at least 20
+                        characters long!</strong>
+                    <strong *ngIf="fv.description.errors.maxlength">Please, the description can be have 60 characters
+                        maximum!</strong>
+                </div>
+            </div>
+            <div class="input-field col s6">
+                <input id="txtAverage" formControlName="average" type="text" class="validate">
+                <label for="txtAverage">Average</label>
+                <div class="warning-validation" *ngIf="fv.average.errors && (fv.average.touched || fv.average.dirty)">
+                    <strong *ngIf="fv.average.errors.required">Please, enter a average!</strong>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s9">
+                <input id="txtImage" formControlName="image" type="text" class="validate">
+                <label for="txtImage">Image</label>
+                <div class="warning-validation" *ngIf="fv.image.errors && (fv.image.touched || fv.image.dirty)">
+                    <strong *ngIf="fv.image.errors.required">Please, enter a image!</strong>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <button [disabled]="fv.name.errors || fv.code.errors || fv.description.errors || fv.image.errors || fv.average.errors" class="btn waves-effect waves-light" type="submit"
+                    name="action">Save
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

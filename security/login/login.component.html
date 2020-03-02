@@ -1,0 +1,56 @@
+<div id="login-page" class="row">
+  <div class="col s12 z-depth-6 card-panel">
+    <form [formGroup]="fgValidation" (ngSubmit)="loginEvent()" class="login-form">
+      <div class="row">
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mail_outline</i>
+          <input class="validate" formControlName="username" id="username" type="email">
+          <label for="username" data-error="wrong" data-success="right">Username</label>
+          <div class="warning-validation" *ngIf="fg.username.errors && (fg.username.touched || fg.username.dirty)">
+            <strong *ngIf="fg.username.errors.required">The username is required</strong>
+            <strong *ngIf="fg.username.errors.minlength">The username must be at least 5 characters long</strong>
+            <strong *ngIf="fg.username.errors.maxlength">The username must be up to 30 characters long</strong>
+            <strong *ngIf="fg.username.errors.email">The username must be a email</strong>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock_outline</i>
+          <input formControlName="password" id="password" type="password">
+          <label for="password">Password</label>
+          <div class="warning-validation" *ngIf="fg.password.errors && (fg.password.touched || password.dirty)">
+            <strong *ngIf="fg.password.errors.required">The password is required</strong>
+            <strong *ngIf="fg.password.errors.minlength">The password must be at least 5 characters long</strong>
+            <strong *ngIf="fg.password.errors.maxlength">The password must be up to 15 characters long</strong>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+            <re-captcha (resolved)="beforeSubmittingForm($event)" siteKey="6Lc7Q9kUAAAAAFjdDhYGzeZS_h-PHA6kMXg8UD1x"></re-captcha>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <button [disabled]="fg.username.errors && fg.password.errors" (click)="beforeSubmittingForm()"
+            class="btn waves-effect waves-light blue col s12" type="submit" name="action">Login
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 m6 l6">
+          <p class="margin right-align medium-small"><a href="#">Forgot password?</a></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 m6 l6">
+          <p class="margin right-align medium-small"><a href="client/creator">Sign up as a Customer</a></p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

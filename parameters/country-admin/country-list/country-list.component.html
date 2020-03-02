@@ -1,0 +1,41 @@
+<br />
+<button routerLink="/country/creator" class="btn waves-effect waves-light green" type="button" name="action">New Register
+    <i class="material-icons right">send</i>
+</button>
+
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Country Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of countryList | paginate: { itemsPerPage: 3, currentPage: p }">
+            <td>{{c.code}}</td>
+            <td>{{c.name}}</td>
+            <td><button routerLink="/country/editor/{{c.code}}" class="btn waves-effect waves-light orange" type="button" name="action">Edit
+                <i class="material-icons right">edit</i>
+              </button>
+            </td>
+            <td><button class="btn waves-effect waves-light red" type="button" (click)="openConfirmation(c.id)" name="action">Delete
+                <i class="material-icons right">delete</i>
+              </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<div id="modalConfirmation" class="modal">
+    <div class="modal-content">
+      <h4>Confirmation Window</h4>
+      <p>Do you confirm remove this element?</p>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-light btn green" (click)="removeElement()">Confirm</a> &nbsp;
+      <a class="modal-close waves-effect waves-light btn red">Cancel</a>
+    </div>
+</div>
